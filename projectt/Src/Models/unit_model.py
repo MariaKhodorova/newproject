@@ -21,7 +21,7 @@ class unit_model(reference):
         if coeff != 1:
             self.coefficient = coeff   
         
-    
+        
     @property
     def base_unit(self):
         """

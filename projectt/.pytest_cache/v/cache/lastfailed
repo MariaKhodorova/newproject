@@ -1,0 +1,7 @@
+{
+  "Tst/factory_test.py::factory_test::test_check_create_groups": true,
+  "Tst/factory_test.py::factory_test::test_check_create_nomenclatures": true,
+  "Tst/factory_test.py::factory_test::test_check_create_receipts": true,
+  "Tst/factory_test.py::factory_test::test_check_create_units": true,
+  "Tst/factory_test.py::factory_test::test_check_factory_create": true
+}
