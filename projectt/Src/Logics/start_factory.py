@@ -1,3 +1,4 @@
+from Src.settings import settings, DFormats
 # Модели
 from Src.Models.group_model import group_model
 from Src.Models.unit_model import unit_model
@@ -5,9 +6,10 @@ from Src.Models.nomenclature_model import nomenclature_model
 from Src.reference import reference
 from Src.Models.receipe_model import receipe_model
 from Src.Models.receipe_row_model import receipe_row_model
+from Src.Logics.csv_reporting import csv_reporting
 
 # Системное
-from Src.settings import settings
+
 from Src.Storage.storage import storage
 from Src.exceptions import exception_proxy, operation_exception, argument_exception
 
@@ -15,14 +17,14 @@ from Src.exceptions import exception_proxy, operation_exception, argument_except
 # Класс для обработки данных. Начало работы приложения
 #
 class start_factory:
-    __oprions: settings = None
+    __options: settings = None
     __storage: storage = None
     
     def __init__(self, _options: settings,
                  _storage: storage = None) -> None:
         
         exception_proxy.validate(_options, settings)
-        self.__oprions = _options
+        self.__options = _options
         self.__storage = _storage
         
     
@@ -39,7 +41,33 @@ class start_factory:
             self.__storage = storage()
             
         self.__storage.data[ key ] = items
+
+    def saveAs(self, filename:str, skey:str):
+        """
+            Сохранение данных в файл
+        Args:
+            filename (str): имя файла
+        """
         
+        if self.__storage == None:
+            return
+        if self.__options == None:
+            return
+        
+        frmt = self.__options.ReportFormat()
+        if frmt == DFormats.CSV:
+            saveHelper=csv_reporting(self.__storage)
+
+        elif frmt == DFormats.MARKDOWN:
+            saveHelper=csv_reporting(self.__storage)
+
+        elif frmt == DFormats.JSON:
+            saveHelper=csv_reporting(self.__storage)
+
+        s = saveHelper.create(skey)
+
+        return s
+
     @property            
     def storage(self):
         """
@@ -202,8 +230,8 @@ class start_factory:
         Returns:
             _type_: _description_
         """
-        if self.__oprions.is_first_start == True:
-            self.__oprions.is_first_start = False
+        if self.__options.is_first_start == True:
+            self.__options.is_first_start = False
             
             # 1. Формируем и зпоминаем номеклатуру
             items = start_factory.create_nomenclature()

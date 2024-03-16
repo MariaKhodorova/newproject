@@ -1,12 +1,22 @@
 from Src.exceptions import exception_proxy
 
+from enum import Enum
+
+class DFormats(Enum) :
+    CSV=1
+    MARKDOWN=2
+    JSON =  3
+
 #
 # Класс для описания настроек
 #
+
+
 class settings():
     _inn = 0
     _short_name = ""
     _first_start = True
+    _ReportFormat = DFormats.CSV
     
     
     @property
@@ -48,4 +58,9 @@ class settings():
     @is_first_start.setter        
     def is_first_start(self, value: bool):
         self._first_start = value
+
+    
+    def ReportFormat(self):
+        return self._ReportFormat
+
     
