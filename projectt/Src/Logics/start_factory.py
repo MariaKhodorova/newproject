@@ -1,4 +1,3 @@
-from Src.settings import settings, DFormats
 # Модели
 from Src.Models.group_model import group_model
 from Src.Models.unit_model import unit_model
@@ -6,25 +5,27 @@ from Src.Models.nomenclature_model import nomenclature_model
 from Src.reference import reference
 from Src.Models.receipe_model import receipe_model
 from Src.Models.receipe_row_model import receipe_row_model
-from Src.Logics.csv_reporting import csv_reporting
+from Src.Models.storage_row_model import storage_row_modfel
+from Src.Models.storage_model import storage_model
 
 # Системное
-
+from Src.settings import settings
 from Src.Storage.storage import storage
 from Src.exceptions import exception_proxy, operation_exception, argument_exception
+import datetime
 
 #
 # Класс для обработки данных. Начало работы приложения
 #
 class start_factory:
-    __options: settings = None
+    __oprions: settings = None
     __storage: storage = None
     
     def __init__(self, _options: settings,
                  _storage: storage = None) -> None:
         
         exception_proxy.validate(_options, settings)
-        self.__options = _options
+        self.__oprions = _options
         self.__storage = _storage
         
     
@@ -41,33 +42,7 @@ class start_factory:
             self.__storage = storage()
             
         self.__storage.data[ key ] = items
-
-    def saveAs(self, filename:str, skey:str):
-        """
-            Сохранение данных в файл
-        Args:
-            filename (str): имя файла
-        """
         
-        if self.__storage == None:
-            return
-        if self.__options == None:
-            return
-        
-        frmt = self.__options.ReportFormat()
-        if frmt == DFormats.CSV:
-            saveHelper=csv_reporting(self.__storage)
-
-        elif frmt == DFormats.MARKDOWN:
-            saveHelper=csv_reporting(self.__storage)
-
-        elif frmt == DFormats.JSON:
-            saveHelper=csv_reporting(self.__storage)
-
-        s = saveHelper.create(skey)
-
-        return s
-
     @property            
     def storage(self):
         """
@@ -87,11 +62,11 @@ class start_factory:
             _type_: _description_
         """
         items = []
-        items.append( unit_model.create_gram())
-        items.append( unit_model.create_killogram())
-        items.append( unit_model.create_liter())
-        items.append( unit_model.create_milliliter())
-        items.append(unit_model.create_ting())
+        items.append( unit_model.create_gram() )
+        items.append( unit_model.create_killogram() )
+        items.append( unit_model.create_liter() )
+        items.append( unit_model.create_milliliter() )
+        items.append( unit_model.create_ting() )
         
         return items
     
@@ -221,6 +196,48 @@ class start_factory:
         items = [ {"Яйца": 3}, {"Сахарная пудра":180}, {"Ванилиин" : 5}, {"Корица": 5} ,{"Какао": 20} ]
         result.append( receipe_model.create_receipt("Безе", "", items, data))
         return result
+    
+
+    @staticmethod
+    def create_storage_adress(self):
+        """
+        Сформировать список адресов со складами
+
+        """
+        adresses = []
+
+        # Адрес 1
+        country = "Russia"
+        city = "Irkutsk"
+        street = "Lenina"
+        house = "14"
+        adress1 = f"{country.name}, {city.name} , {street.name}, {house.name}"
+
+        adresses.append(adress1)
+
+        return adresses
+
+
+    @staticmethod
+    def create_journal(self):
+        """
+        Сформировать список транзакций для складского журнала
+
+        """
+        result = []
+        # Транзакция 1
+        storage1 = adresses
+        nomenclature1 = "Cоль"
+        unit1 = "килограмм"
+        action1 = True   # Поступление товара
+        count1 = 3      # Количество товара
+        period1 = datetime.now().date()
+        row1 = f"{storage1}, {nomenclature1} , {unit1}, {action1}, {count1}, {period1}"
+        result.append(row1)
+
+        # Транзакция 2
+
+        return result
         
     
     # Основной метод
@@ -230,11 +247,9 @@ class start_factory:
         Returns:
             _type_: _description_
         """
-        if self.__options.is_first_start == True:
-            self.__options.is_first_start = False
-            
+        if self.__oprions.is_first_start == True:
             # 1. Формируем и зпоминаем номеклатуру
-            items = start_factory.create_nomenclature()
+            items = start_factory.create_nomenclatures()
             self.__save( storage.nomenclature_key(), items )
             
             # 2. Формируем и запоминаем рецепты

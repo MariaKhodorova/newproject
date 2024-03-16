@@ -40,7 +40,6 @@ class storage:
         """
         return "groups"
       
-      
 
     @staticmethod  
     def unit_key():
@@ -52,6 +51,15 @@ class storage:
         return "units"
     
     @staticmethod
+    def process_turn_key():
+        """
+            Список оборотов
+        Returns:
+            _type_: _description_
+        """
+        return "process_turn_key"
+    
+    @staticmethod
     def receipt_key():
         """
             Список рецептов
@@ -59,4 +67,20 @@ class storage:
             _type_: _description_
         """
         return "receipts"
+    
+    # Код взят: https://github.com/UpTechCompany/GitExample/blob/6665bc70c4933da12f07c0a0d7a4fc638c157c40/storage/storage.py#L30
+    
+    @staticmethod
+    def storage_keys(cls):
+        """
+            Получить список ключей
+        Returns:
+            _type_: _description_
+        """
+        keys = []
+        methods = [getattr(cls, method) for method in dir(cls) if callable(getattr(cls, method))]
+        for method in methods:
+            if method.__name__.endswith("_key") and callable(method):
+                keys.append(method())
+        return keys
     
