@@ -5,7 +5,7 @@ from Src.Models.nomenclature_model import nomenclature_model
 from Src.reference import reference
 from Src.Models.receipe_model import receipe_model
 from Src.Models.receipe_row_model import receipe_row_model
-from Src.Models.storage_row_model import storage_row_modfel
+from Src.Models.storage_row_model import storage_row_model
 from Src.Models.storage_model import storage_model
 
 # Системное
@@ -226,7 +226,7 @@ class start_factory:
         """
         result = []
         # Транзакция 1
-        storage1 = adresses
+        storage1 = """ adresses """
         nomenclature1 = "Cоль"
         unit1 = "килограмм"
         action1 = True   # Поступление товара
