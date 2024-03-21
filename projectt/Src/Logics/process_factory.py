@@ -40,7 +40,7 @@ class process_factory:
 
     def calculate(create_journal, process_turn_key) -> process_storage_turn:
 
-        _turnover = 
+        _turnover = 0
     
 
         

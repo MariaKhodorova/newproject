@@ -24,7 +24,7 @@ class reference_convertor(convertor):
         return factory.serialize(object)
     
 #
-# Фабрика для конвертация данных
+# Фабрика для конвертация данных (сериализация json)
 #
 class convert_factory:
     _maps = {}
