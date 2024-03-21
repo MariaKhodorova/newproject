@@ -28,11 +28,13 @@ class csv_reporting(reporting):
         for item in items:
             row = ""
             for field in self.fields:
-                value = getattr(item, field)
-                if value is None:
-                    value = ""
-                    
-                row +=f"{value}{delimetr}"
+                attribute = getattr(item.__class__, field)
+                if isinstance(attribute, property):
+                    value = getattr(item, field)
+                    if isinstance(value, (list, dict)) or value is None:
+                        value = ""
+                        
+                    row +=f"{value}{delimetr}"
                 
             result += f"{row[:-1]}\n"
             
