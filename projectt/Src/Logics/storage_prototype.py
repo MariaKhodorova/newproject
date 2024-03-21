@@ -67,11 +67,11 @@ class storage_prototype(error_proxy):
         return   storage_prototype( result )
     
     
-    def filter_receipes(self, storage_key: str):
+    def filter_receipes(self, receipe_id):
         """
             Отфильтровать данные по рецепту
         Args:
-            storage_key: 
+            receipe_id: str 
 
         Returns:
             storage_prototype: _description_
@@ -84,7 +84,7 @@ class storage_prototype(error_proxy):
 
         result = []
         for item in self.__data:
-            if item.storage_key == storage_key:
+            if item.storage_key == receipe_id:
                 result.append(item)
 
         return   storage_prototype( result )

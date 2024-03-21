@@ -48,7 +48,7 @@ class storage_service:
         """
             Получить обороты по конкретной номенклатуре
         Args:
-            nomenclature_id: int
+            nomenclature_id: str
         Returns:
             dict: _description_
         """
@@ -69,22 +69,22 @@ class storage_service:
         turns = processing().process( filtred_data )
         return turns
     
-    def create_turns_receipes(self, storage_key: str) -> dict:
+    def create_turns_receipes(self, receipe_id: str) -> dict:
         """
             проверка возможности списания, формирования списка транзакций на списание согласно рецепту
         Args:
-            nomenclature_id: int
+            receipe_id: str
         Returns:
             dict: _description_
         """
-        exception_proxy.validate(storage_key, str)
+        exception_proxy.validate(receipe_id, str)
 
-        if len(storage_key) <= 0:
+        if len(receipe_id) <= 0:
             raise argument_exception("Некорректно переданы параметры!")
 
         # Фильтруем
         prototype = storage_prototype( self.__data )
-        filtred_data = prototype.filter_receipes( storage_key )
+        filtred_data = prototype.filter_receipes( receipe_id )
         filtred_data = prototype.filter( filtred_data )
         filtred_data = prototype.filter_nomenclature( filtred_data )
 
