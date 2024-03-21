@@ -40,6 +40,16 @@ class storage:
         """
         return "groups"
       
+      
+    @staticmethod
+    def storage_transaction_key():
+        """
+            Список складских проводок
+        Returns:
+            _type_: _description_
+        """
+        return "transactions"  
+    
 
     @staticmethod  
     def unit_key():
@@ -49,15 +59,6 @@ class storage:
             _type_: _description_
         """
         return "units"
-    
-    @staticmethod
-    def process_turn_key():
-        """
-            Список оборотов
-        Returns:
-            _type_: _description_
-        """
-        return "process_turn_key"
     
     @staticmethod
     def receipt_key():

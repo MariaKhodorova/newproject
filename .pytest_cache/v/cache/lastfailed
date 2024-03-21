@@ -1,9 +1,0 @@
-{
-  "projectt/Tst/convert_test.py": true,
-  "projectt/Tst/deserialization_json_test.py": true,
-  "projectt/Tst/error_test.py": true,
-  "projectt/Tst/factory_test.py": true,
-  "projectt/Tst/nomenclature_test.py": true,
-  "projectt/Tst/reporting_test.py": true,
-  "projectt/Tst/settings_test.py": true
-}

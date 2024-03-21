@@ -45,30 +45,6 @@ class factory_test(unittest.TestCase):
         # Проверки
         assert report is not None
         print ( report.create(key) )
-
-    #
-    # Проверить формирование адреса склада
-    #
-    def test_check_create_storage_journal(self):
-        # Подготовка
-        items = start_factory.create_storage_m()
-        
-        # Действие
-        
-        # Проверки
-        assert len(items) > 0
-
-    #
-    # Проверить формирование складского журнала
-    #
-    def test_check_create_storage_journal(self):
-        # Подготовка
-        items = start_factory.create_journal()
-        
-        # Действие
-        
-        # Проверки
-        assert len(items) > 0  
  
     #
     # Проверка создания начальных рецептов
@@ -141,6 +117,7 @@ class factory_test(unittest.TestCase):
             assert storage.receipt_key() in factory.storage.data
             assert storage.group_key() in factory.storage.data
             assert storage.unit_key() in factory.storage.data
+            assert storage.storage_transaction_key() in factory.storage.data
         else:
             assert result == False    
         
