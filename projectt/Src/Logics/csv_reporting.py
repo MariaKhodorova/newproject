@@ -1,21 +1,19 @@
-from Src.Storage.storage import storage
-from Src.Logics.Reporting import Reporting
-from Src.Models.group_model import group_model
-from Src.Models.nomenclature_model import nomenclature_model
-from Src.Models.receipe_model import receipe_model
-from Src.Models.receipe_row_model import receipe_row_model
-from Src.Models.unit_model import unit_model
+from Src.Logics.reporting import reporting
 from Src.exceptions import operation_exception
 
-class csv_reporting(Reporting):
+
+#
+# Класс - реализация построение данных в формате csv
+#
+class csv_reporting(reporting):
     
-    def create(self, typeKey: str):
-        super().create(typeKey)
+    def create(self, storage_key: str):
+        super().create(storage_key)
         result = ""
         delimetr = ";"
 
         # Исходные данные
-        items = self.data[ typeKey ]
+        items = self.data[ storage_key ]
         if items == None:
             raise operation_exception("Невозможно сформировать данные. Данные не заполнены!")
         

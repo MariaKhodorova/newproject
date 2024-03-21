@@ -17,7 +17,7 @@ class reference(ABC):
     _error = error_proxy()
     
     def __init__(self, name):
-        _id = uuid.uuid4()
+        self._id = uuid.uuid4()
         self.name = name
     
     @property
@@ -45,7 +45,7 @@ class reference(ABC):
     @property
     def id(self):
         " Уникальный код записи "
-        return self._id  
+        return str(self._id.hex)  
 
     @property
     def is_error(self):
@@ -66,6 +66,27 @@ class reference(ABC):
             result[ position.name ] = position
            
         return result   
+   
+    @staticmethod
+    def create_fields(source) -> list:
+        """
+            Сформировать список полей от объекта типа reference
+        Args:
+            source (_type_): _description_
+
+        Returns:
+            list: _description_
+        """
+        result = list(filter(lambda x: not x.startswith("_") and not x.startswith("create_") , dir(source))) 
+        return result
+    
+    def __str__(self) -> str:
+        """
+            Изменим строковое представление класса
+        Returns:
+            str: _description_
+        """
+        return self.id
     
     
                 

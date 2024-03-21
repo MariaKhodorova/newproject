@@ -1,7 +1,23 @@
 {
+  "Tst/convert_test.py::convert_test::test_check_convert_nomenclature": true,
+  "Tst/convert_test.py::convert_test::test_check_convert_nomenctalures": true,
+  "Tst/convert_test.py::convert_test::test_check_convert_receipts": true,
   "Tst/factory_test.py::factory_test::test_check_create_groups": true,
   "Tst/factory_test.py::factory_test::test_check_create_nomenclatures": true,
   "Tst/factory_test.py::factory_test::test_check_create_receipts": true,
   "Tst/factory_test.py::factory_test::test_check_create_units": true,
-  "Tst/factory_test.py::factory_test::test_check_factory_create": true
+  "Tst/factory_test.py::factory_test::test_check_factory_create": true,
+  "Tst/factory_test.py::factory_test::test_check_method_storage_keys": true,
+  "Tst/factory_test.py::factory_test::test_check_report_factory_create": true,
+  "Tst/storage_test.py::convert_test::test_check_convert_nomenclature": true,
+  "Tst/storage_test.py::convert_test::test_check_convert_nomenctalures": true,
+  "Tst/storage_test.py::convert_test::test_check_convert_receipts": true,
+  "Tst/convert_test.py": true,
+  "Tst/factory_test.py": true,
+  "Tst/storage_test.py": true,
+  "Tst/reporting_test.py::reporting_test::test_check_csv_create_nomenclature_key": true,
+  "Tst/reporting_test.py::reporting_test::test_check_csv_create_unit_key": true,
+  "Tst/reporting_test.py::reporting_test::test_check_json_reporting_build": true,
+  "Tst/reporting_test.py::reporting_test::test_check_markdown_create_unit_key": true,
+  "Tst/reporting_test.py::reporting_test::test_check_reporting_build": true
 }
